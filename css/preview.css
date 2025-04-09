@@ -1,0 +1,11 @@
+#preview {
+    overflow-y: auto;
+    /* border: 3px solid red; */
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 1rem 1.5rem;
+}
+
+#preview > div {
+    height: 50rem;
+    background-color: white;
+}

@@ -1,0 +1,17 @@
+#sidebar {
+    width: 20rem;
+    /* padding-top: 5rem; */
+    border-right: 1px solid var(--color-border);
+
+}
+
+#toolbox > .title {
+    font-size: var(--fs-md);
+    padding: 0.5rem 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    background-color: white;
+}
+
+#toolbox-list {
+    background-color: aqua;
+}

@@ -1,0 +1,106 @@
+header {
+    /* padding: 0.5rem 1.5rem; */
+    height: 5.5rem;
+    /* border-bottom: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; */
+    background-color: white;
+    z-index: 999;
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999; */
+}
+
+header > div {
+    padding: 0.5rem 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header button {
+    padding: 0.5rem 1.5rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    background-color: white;
+    /* border: 1px solid var(--color-border); */
+    border: 0;
+    border-radius: 0.375rem;
+    /* transition: all 150ms ease-in-out; */
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+header button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+header #btnPreview {
+    font-weight: 700;
+}
+
+/* header #btnDelete {
+    border: 1px solid transparent;
+} */
+
+header #btnDelete:hover {
+    /* border: 1px solid red; */
+    color: red;
+    /* background-color: white; */
+}
+
+header input[type=text] {
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.25rem;
+    margin: 0.25rem 0;
+    width: 20rem;
+}
+
+/* header #btnPreview:hover {
+    background-color: #ccc;
+}
+
+header #btnDeploy {
+    color: var(--color-font-lite);
+    background-color: white;
+}
+
+header #btnDeploy:hover {
+    background-color: #dfdfdf;
+} */
+
+#headerTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#headerTitle h2 {
+    margin-left: 0.75rem;
+    font-size: var(--fs-lg);
+}
+
+#headerSub {
+    height: 3rem;
+    background-color: white;
+    gap: 1rem;
+}
+
+#headerSub > div {
+    display: flex;
+    flex-direction: row;
+    /* gap: 1rem; */
+    align-items: center;
+    font-size: var(--fs-sm);
+}
+
+/* #txtId {
+    padding-left: 6rem;
+} */
