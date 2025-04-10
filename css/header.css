@@ -6,7 +6,8 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center; */
-    background-color: white;
+    /* background-color: #FFFFC5; */
+    background-color: #FFC067;
     z-index: 999;
     /* position: fixed;
     top: 0;
@@ -17,7 +18,8 @@ header {
 
 header > div {
     padding: 0.5rem 1.5rem;
-    border-bottom: 1px solid var(--color-border);
+    /* border-bottom: 1px solid var(--color-border); */
+    border-bottom: 1px solid #FFC067;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -33,15 +35,16 @@ header button {
     border: 0;
     border-radius: 0.375rem;
     /* transition: all 150ms ease-in-out; */
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 header button:hover {
     background-color: rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
 }
 
 header #btnPreview {
     font-weight: 700;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 /* header #btnDelete {
@@ -49,17 +52,17 @@ header #btnPreview {
 } */
 
 header #btnDelete:hover {
-    /* border: 1px solid red; */
     color: red;
-    /* background-color: white; */
 }
 
 header input[type=text] {
     border: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 0.25rem;
-    margin: 0.25rem 0;
-    width: 20rem;
+    padding: 0.5rem 0.5rem 0.25rem;
+    /* margin: 0.25rem 0; */
+    width: 25rem;
+    font-size: var(--fs-md);
+    font-weight: 700;
 }
 
 /* header #btnPreview:hover {
@@ -101,6 +104,11 @@ header #btnDeploy:hover {
     font-size: var(--fs-sm);
 }
 
-/* #txtId {
-    padding-left: 6rem;
-} */
+#txtId {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0.5rem 0.25rem;
+    /* margin: 0.25rem 0; */
+    min-width: 5rem;
+    font-size: var(--fs-md);
+    font-weight: 700;
+}

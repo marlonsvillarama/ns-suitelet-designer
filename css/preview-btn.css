@@ -1,0 +1,32 @@
+#previewButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.preview-btn {
+    border: 1px solid transparent;
+    padding: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    position: relative;
+}
+
+.preview-btn:hover {
+    border: 1px solid var(--color-hover);
+    border-radius: 0.25rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    transform: translateY(-1px);
+    cursor: pointer;
+}
+
+.preview-btn > span {
+    border: 1px solid var(--color-border);
+    border-radius: 0.25rem;
+    padding: 0.5rem 1.25rem;
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    display: inline-block;
+}

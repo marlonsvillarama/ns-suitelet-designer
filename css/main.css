@@ -8,6 +8,7 @@ main {
 
 #preview {
     flex-grow: 1;
+    background-color: white;
 }
 
 #properties {

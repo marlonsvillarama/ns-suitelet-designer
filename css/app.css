@@ -1,5 +1,9 @@
 @import url('./globals.css');
+@import url('./form.css');
 @import url('./header.css');
 @import url('./main.css');
 @import url('./sidebar.css');
 @import url('./preview.css');
+@import url('./preview-btn.css');
+@import url('./preview-grp.css');
+@import url('./preview-fld.css');

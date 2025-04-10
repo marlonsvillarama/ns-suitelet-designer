@@ -1,11 +1,45 @@
 #preview {
     overflow-y: auto;
-    /* border: 3px solid red; */
-    background-color: rgba(0, 0, 0, 0.05);
-    padding: 1rem 1.5rem;
+    /* margin: 2rem 2rem 3rem; */
+    padding: 2rem 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-family: var(--font);
+    color: #666;
 }
 
-#preview > div {
-    height: 50rem;
-    background-color: white;
+#previewHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#previewHeader input[type=text] {
+    padding: 0.25rem 0.75rem;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: var(--fs-xl);
+    width: 40%;
+    color: #666;
+}
+
+#previewHeader button {
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    border: 0;
+    border-radius: 0.25rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: #666;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+#previewHeader button:hover {
+    background-color: var(--color-hover);
+    transform: translateY(-1px);
 }
