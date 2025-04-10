@@ -19,7 +19,11 @@ const ELEMENTS = {
         FieldGroup: 'fieldGroupProperties',
         Sublist: 'sublistProperties'
     },
-    Sidebar: 'sidebar'
+    Sidebar: 'sidebar',
+    SidebarButtons: {
+        ButtonSave: 'btnSaveButton',
+        ButtonDelete: 'btnDeleteButton'
+    }
 };
 
 const PREVIEW = {
@@ -43,12 +47,12 @@ const _cls = (value) => {
     return document.getElementsByClassName(value);
 };
 
-const _q = (selector) => {
-    return document.querySelector(selector);
+const _q = (selector, parent) => {
+    return (parent || document).querySelector(selector);
 };
 
-const _qAll = (selector) => {
-    return document.querySelectorAll(selector);
+const _qAll = (selector, parent) => {
+    return (parent || document).querySelectorAll(selector);
 };
 
 const _el = (content) => {
@@ -101,6 +105,23 @@ const attachButtonHandlers = () => {
     }));
 };
 
+const attachSidebarHandlers = () => {
+    _id(ELEMENTS.SidebarButtons.ButtonSave).addEventListener('mouseup', e => {
+        let fields = _qAll(`[data-prop]`, e.target.closest('.sidebar-prop'));
+        console.log('populateProperties fields', fields);
+
+        // TODO Loop through all form fields to collect all field values
+        // fields.forEach(f => {
+        //     let fp = f.dataset.prop;
+        //     console.log(`populateProperties f = ${f.type}`, fp);
+        //     switch (f.type) {
+        //         case 'checkbox': { f.checked = (data[fp] === true); break; }
+        //         case 'text': { console.log('field is text'); f.setAttribute('value', data[fp]); break; }
+        //     }
+        // });
+    });
+};
+
 const collectElements = () => {
     for (const [ key, value ] of Object.entries(ELEMENTS.Preview)) {
         PREVIEW[key] = _id(value);
@@ -136,8 +157,8 @@ const populateProperties = (options) => {
         let fp = f.dataset.prop;
         console.log(`populateProperties f = ${f.type}`, fp);
         switch (f.type) {
-            // case 'checkbox': { f.setAttribute('checked', data[fp === true ? 'checked' : '']); break; }
-            case 'text': { console.log('field is text'); f.value === data[fp]; break; }
+            case 'checkbox': { f.checked = (data[fp] === true); break; }
+            case 'text': { console.log('field is text'); f.setAttribute('value', data[fp]); break; }
         }
     });
 };
@@ -180,6 +201,7 @@ const showSidebar = (options) => {
 
         collectElements();
         attachButtonHandlers();
+        attachSidebarHandlers();
         // createField({});
         // updateField({});
         // createButton({});
