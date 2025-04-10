@@ -22,7 +22,9 @@ const ELEMENTS = {
     Sidebar: 'sidebar',
     SidebarButtons: {
         ButtonSave: 'btnSaveButton',
-        ButtonDelete: 'btnDeleteButton'
+        ButtonDelete: 'btnDeleteButton',
+        FieldSave: 'btnSaveField',
+        FieldDelete: 'btnDeleteField'
     }
 };
 
@@ -38,6 +40,8 @@ const PROPERTIES = {
     FieldGroup: '',
     Sublist: ''
 };
+
+let CURRENT_ID = '';
 
 const _id = (value) => {
     return document.getElementById(value);
@@ -106,20 +110,67 @@ const attachButtonHandlers = () => {
 };
 
 const attachSidebarHandlers = () => {
+    // attachSidebarSaveButtonHandler({
+    //     el: _id(ELEMENTS.SidebarButtons.ButtonSave),
+    //     store: buttons
+    // });
+    // attachSidebarSaveButtonHandler({
+    //     el: _id(ELEMENTS.SidebarButtons.FieldSave),
+    //     store: fields
+    // });
     _id(ELEMENTS.SidebarButtons.ButtonSave).addEventListener('mouseup', e => {
-        let fields = _qAll(`[data-prop]`, e.target.closest('.sidebar-prop'));
-        console.log('populateProperties fields', fields);
-
-        // TODO Loop through all form fields to collect all field values
-        // fields.forEach(f => {
-        //     let fp = f.dataset.prop;
-        //     console.log(`populateProperties f = ${f.type}`, fp);
-        //     switch (f.type) {
-        //         case 'checkbox': { f.checked = (data[fp] === true); break; }
-        //         case 'text': { console.log('field is text'); f.setAttribute('value', data[fp]); break; }
-        //     }
-        // });
+        console.log('BEFORE buttons', buttons);
+        let updates = storeUpdatedValues({ el: e.target, store: buttons });
+        _id(CURRENT_ID).textContent = updates.label;
+        closeSidebar();
+        console.log('AFTER buttons', buttons);
     });
+
+    _id(ELEMENTS.SidebarButtons.FieldSave).addEventListener('mouseup', e => {
+        let updates = storeUpdatedValues({ el: e.target, store: buttons });
+        _id(CURRENT_ID).textContent = updates.label;
+        closeSidebar();
+    });
+
+    _id(ELEMENTS.SidebarButtons.ButtonDelete).addEventListener('mouseup', e => {});
+};
+
+const collectUpdateValues = (options) => {
+    let { el } = options;
+    let updates = {};
+
+    let fields = _qAll(`[data-prop]`, el.closest('.sidebar-prop'));
+    fields.forEach(f => {
+        let fp = f.dataset.prop;
+        switch (f.type) {
+            case 'checkbox': { updates[fp] = f.checked; break; }
+            case 'text': { updates[fp] = f.value; break; }
+        }
+    });
+
+    return updates;
+};
+
+const storeUpdatedValues = (options) => {
+    let { el, store } = options;
+
+    let index = store.findIndex(b => b.id === CURRENT_ID);
+    if (index < 0) { return; }
+
+    let updates = collectUpdateValues({ el });
+    for (const key of Object.keys(updates)) {
+        store[index][key] = updates[key];
+    }
+
+    // _id(CURRENT_ID).textContent = updated.label;
+    // closeSidebar();
+
+    return updates;
+};
+
+const closeSidebar = () => {
+    _show(ELEMENTS.Sidebar);
+    CURRENT_ID = '';
 };
 
 const collectElements = () => {
@@ -153,12 +204,15 @@ const populateProperties = (options) => {
     console.log('populateProperties data', data);
     console.log('populateProperties fields', fields);
 
+    // Store the current object ID
+    CURRENT_ID = data.id;
+
     fields.forEach(f => {
         let fp = f.dataset.prop;
         console.log(`populateProperties f = ${f.type}`, fp);
         switch (f.type) {
             case 'checkbox': { f.checked = (data[fp] === true); break; }
-            case 'text': { console.log('field is text'); f.setAttribute('value', data[fp]); break; }
+            case 'text': { console.log('field is text'); f.value = data[fp] || ''; break; }
         }
     });
 };

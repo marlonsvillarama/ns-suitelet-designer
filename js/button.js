@@ -12,7 +12,7 @@ export const createButton = (options) => {
     console.log('BUTTON_DATA', BUTTON_DATA);
 
     return `<div class="preview-btn">
-        <span name="${id}" id="${id}">${label}</span>
+        <span name="${id}" id="${id}" data-id="${id}">${label}</span>
     </div>`;
 };
 
