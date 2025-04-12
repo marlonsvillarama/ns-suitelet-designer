@@ -127,7 +127,7 @@ const attachSidebarHandlers = () => {
     });
 
     _id(ELEMENTS.SidebarButtons.FieldSave).addEventListener('mouseup', e => {
-        let updates = storeUpdatedValues({ el: e.target, store: buttons });
+        let updates = storeUpdatedValues({ el: e.target, store: fields });
         _id(CURRENT_ID).textContent = updates.label;
         closeSidebar();
     });
