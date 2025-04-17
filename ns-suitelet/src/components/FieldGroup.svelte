@@ -1,6 +1,6 @@
 <script>
     // import { SuiteletData, UpdateObject } from "../store/suitelet";
-    import { createSuiteletData, createUpdateData } from "../store/suitelet.svelte";
+    import { createSuiteletData } from "../store/suitelet.svelte";
     import { generateId } from "../store/string";
 
     // export let data = {};
@@ -30,8 +30,8 @@
     <div class="header">
         <h3>{label}</h3>
         <div>
-            <button type="button" on:mouseup={editGroup}>Add field</button>
-            <button type="button" on:mouseup={editGroup}>Edit</button>
+            <button type="button" onmouseup={editGroup}>Add field</button>
+            <button type="button" onmouseup={editGroup}>Edit</button>
         </div>
     </div>
     <div class="contents">

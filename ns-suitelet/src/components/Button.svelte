@@ -4,7 +4,7 @@
     import { generateId } from "../store/string";
 
     let suitelet = createSuiteletData();
-    let { data, onclick } = $props();
+    let { data, onchildclick } = $props();
     let id = data?.id || generateId();
     let label = data?.label || 'Button';
 
@@ -13,7 +13,7 @@
     let buttonClasses = button.submit === true ? 'btn-submit' : 'btn-regular';
 </script>
 
-<div id={id} class="btn" {onclick} role="button">
+<div id={id} class="btn" onclick={onchildclick} role="button">
     <span class={buttonClasses}>{label}</span>
 </div>
 

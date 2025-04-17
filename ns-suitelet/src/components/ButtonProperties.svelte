@@ -1,6 +1,6 @@
 <script></script>
 
-<div id="buttonProperties" class="sidebar-prop">
+<div id="buttonProperties" class="sidebar-prop hidden">
     <div class="sidebar-title">
         <h3>Button Properties</h3>
         <svg class="w-6 h-6 text-gray-800 dark:text-white sidebar-close" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">

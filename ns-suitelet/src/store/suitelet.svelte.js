@@ -1,10 +1,10 @@
-export const createSuiteletData = () => {
-    let id = $state('')
-    let name = $state('')
-    let buttons = $state([])
-    let groups = $state([])
-    let sublists = $state([])
+let id = $state('')
+let name = $state('')
+let buttons = $state([])
+let groups = $state([])
+let sublists = $state([])
 
+export const createSuiteletData = () => {
     return {
         get id() { return id },
         get name() { return name },
@@ -47,24 +47,3 @@ export const createSuiteletData = () => {
         }
     };
 };
-export const createUpdateData = () => {
-    let updateKey = $state('');
-    let updateId = $state('');
-    let updateType = $state('');
-
-    return {
-        get key() { return updateKey },
-
-        set key(value) {
-            updateKey = value;
-            let parts = updateKey.split('-');
-            if (parts.length < 2) {
-                updateKey = '';
-                return
-            }
-
-            updateType = parts[0];
-            updateId = parts[1];
-        }
-    }
-}

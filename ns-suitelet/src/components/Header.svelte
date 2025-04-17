@@ -1,6 +1,5 @@
 <script>
     import logo from '../assets/logo.svg'
-    // import { SuiteletData } from '../store/suitelet';
     import { createSuiteletData } from '../store/suitelet.svelte';
 
     let suitelet = createSuiteletData();
@@ -11,19 +10,15 @@
     };
 
     const previewSuitelet = () => {
-        console.log('previewing...')
+        console.log('previewing...', `id = ${suitelet.id}; name = ${suitelet.name}`);
     };
 
     const updateId = (e) => {
         suitelet.id = e.target.innerText;
-        // SuiteletData.update(d => ({ ...d, ...{ id: e.target.innerText} }));
-        console.log(`updated suitelet`, suitelet);
     };
 
     const updateName = (e) => {
         suitelet.name = e.target.value;
-        // SuiteletData.update(d => ({ ...d, ...{ name: e.target.value} }));
-        console.log(`updated suitelet`, suitelet);
     }
 </script>
 

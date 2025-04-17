@@ -1,26 +1,26 @@
 <script>
     import ButtonProperties from "./ButtonProperties.svelte";
-    // import { SuiteletData, UpdateObject } from "../store/suitelet";
-    import { createSuiteletData, createUpdateData } from "../store/suitelet.svelte";
+    import FieldGroupProperties from "./FieldGroupProperties.svelte";
+    import FieldProperties from "./FieldProperties.svelte";
+    import SublistProperties from "./SublistProperties.svelte";
+    import { createSuiteletData } from "../store/suitelet.svelte";
+    import { createUpdateData } from "../store/update.svelte";
 
     const suitelet = createSuiteletData();
     const updateData = createUpdateData();
 
-    $effect(() => console.log(`SIDEBAR updateKey = ${updateData.key}`));
-    /* UpdateObject.subscribe(() => {
-        console.log(`SIDEBAR UpdateObject updated`, $UpdateObject);
+    $effect(() => {
+        console.log(`SIDEBAR updateKey = "${updateData.key}"`)
+        if (!updateData.key) { return; }
+        
+        console.log(`SIDEBAR opening properties form id = "${updateData.id}"; type = ${updateData.type}`)
 
-        let type = $UpdateObject['type'];
-        let key = $UpdateObject['key']
-        switch (type) {
-            case 'button': { console.log(`SIDEBAR: updating button: ${type} = ${key}`); break; }
-            case 'field': { console.log(`SIDEBAR: updating field: ${type} = ${key}`); break; }
-            case 'group': { console.log(`SIDEBAR: updating field group: ${type} = ${key}`); break; }
-        }
-    }); */
+        // TODO: Dynamically render properties form
+
+    });
 </script>
 
-<div id="sidebar" class="">
+<div id="sidebar" class="hidden">
     <ButtonProperties />
     <!-- <div id="buttonProperties" class="sidebar-prop hidden">
         <div class="sidebar-title">
@@ -52,7 +52,8 @@
         </div>
     </div> -->
 
-    <div id="fieldGroupProperties" class="hidden">
+    <FieldGroupProperties />
+    <!-- <div id="fieldGroupProperties" class="hidden">
         <div class="sidebar-title">
             <h3>Field Group Properties</h3>
             <svg class="w-6 h-6 text-gray-800 dark:text-white sidebar-close" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -73,9 +74,10 @@
             <button type="button" id="btnSaveField">Save</button>
             <button type="button" id="btnDeleteField">Delete</button>
         </div>
-    </div>
+    </div> -->
 
-    <div id="fieldProperties" class="">
+    <FieldProperties />
+    <!-- <div id="fieldProperties" class="">
         <div class="sidebar-title">
             <h3>Field Properties</h3>
             <svg class="w-6 h-6 text-gray-800 dark:text-white sidebar-close" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -155,9 +157,10 @@
             <button type="button">Save</button>
             <button type="button">Delete</button>
         </div>
-    </div>
+    </div> -->
 
-    <div id="sublistProperties" class="">
+    <SublistProperties />
+    <!-- <div id="sublistProperties" class="">
         <div class="sidebar-title">
             <h3>Sublist Properties</h3>
             <svg class="w-6 h-6 text-gray-800 dark:text-white sidebar-close" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -174,7 +177,7 @@
                 <input type="text" name="" id="">
             </div>
         </section>
-    </div>
+    </div> -->
 </div>
 
 <style></style>

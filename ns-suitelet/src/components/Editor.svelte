@@ -1,12 +1,14 @@
 <script>
     // import { SuiteletData, UpdateObject } from "../store/suitelet";
-    import { createSuiteletData, createUpdateData } from "../store/suitelet.svelte";
+    import { createSuiteletData } from "../store/suitelet.svelte";
+    import { createUpdateData } from "../store/update.svelte";
     import { generateId } from "../store/string";
     import Button from "./Button.svelte";
     import FieldGroup from "./FieldGroup.svelte";
 
     let suitelet = createSuiteletData();
-    let updateData = createSuiteletData();
+    let updateData = createUpdateData();
+    let { onchildclick } = $props();
 
     let buttonList = suitelet.buttons || [];
     let fieldGroups = suitelet.groups || [];
@@ -38,8 +40,6 @@
     const updateButton = (d) => {
         updateData.key = `button-${d.id}`;
         console.log(`EDITOR updateData.key = ${updateData.key}`);
-        // UpdateObject.set({ type: 'button', key: d.id });
-        console.log(`EDITOR UpdateObject`, suitelet);
     };
 
     const updateGroup = (d) => {
@@ -53,16 +53,16 @@
     <div id="previewHeader">
         <input type="text" name="txtFormName" id="txtFormName" placeholder="Form name" maxlength="80">
         <div>
-            <button type="button" on:mouseup={addButton}>Add button</button>
-            <button type="button" on:mouseup={addFieldGroup}>Add field group</button>
+            <button type="button" onmouseup={addButton}>Add button</button>
+            <button type="button" onmouseup={addFieldGroup}>Add field group</button>
             <!-- <button type="button" on:mouseup={addField}>Add field</button> -->
-            <button type="button" on:mouseup={addSublist}>Add sublist</button>
-        </div>``
+            <button type="button" onmouseup={addSublist}>Add sublist</button>
+        </div>
     </div>
 
     <div id="previewButtons">
         {#each buttonList as button}
-            <Button data={button} onclick={() => {updateButton(button)}} />
+            <Button data={button} onchildclick={() => {updateButton(button)}} />
         {/each}
     </div>
     <div id="previewFields">
