@@ -1,6 +1,6 @@
 <script>
     // import { SuiteletData, UpdateObject } from "../store/suitelet";
-    import { createSuiteletData, createUpdateData } from "../store/suitelet";
+    import { createSuiteletData, createUpdateData } from "../store/suitelet.svelte";
     import { generateId } from "../store/string";
 
     // export let data = {};

@@ -4,7 +4,12 @@
     import Editor from "./components/Editor.svelte";
 
     console.log('loading app...')
-    let suitelet = $state({});
+
+    const showSidebar = (show) => {
+        if (show === true) {}
+    };
+
+    
 </script>
 
 <Header />

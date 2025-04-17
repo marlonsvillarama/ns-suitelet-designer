@@ -1,7 +1,7 @@
 <script>
     import ButtonProperties from "./ButtonProperties.svelte";
     // import { SuiteletData, UpdateObject } from "../store/suitelet";
-    import { createSuiteletData, createUpdateData } from "../store/suitelet";
+    import { createSuiteletData, createUpdateData } from "../store/suitelet.svelte";
 
     const suitelet = createSuiteletData();
     const updateData = createUpdateData();

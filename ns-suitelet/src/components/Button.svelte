@@ -1,10 +1,10 @@
 <script>
     // import { SuiteletData } from "../store/suitelet";
-    import { createSuiteletData } from "../store/suitelet";
+    import { createSuiteletData } from "../store/suitelet.svelte";
     import { generateId } from "../store/string";
 
     let suitelet = createSuiteletData();
-    let { data, onmouseup } = $props();
+    let { data, onclick } = $props();
     let id = data?.id || generateId();
     let label = data?.label || 'Button';
 
@@ -13,7 +13,7 @@
     let buttonClasses = button.submit === true ? 'btn-submit' : 'btn-regular';
 </script>
 
-<div id={id} class="btn" {onmouseup} role="button">
+<div id={id} class="btn" {onclick} role="button">
     <span class={buttonClasses}>{label}</span>
 </div>
 

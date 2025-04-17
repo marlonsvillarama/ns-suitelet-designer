@@ -1,6 +1,6 @@
 <script>
     // import { SuiteletData, UpdateObject } from "../store/suitelet";
-    import { createSuiteletData, createUpdateData } from "../store/suitelet";
+    import { createSuiteletData, createUpdateData } from "../store/suitelet.svelte";
     import { generateId } from "../store/string";
     import Button from "./Button.svelte";
     import FieldGroup from "./FieldGroup.svelte";
@@ -28,15 +28,16 @@
         // groups.push({ id: generateId(), label });
 
         // SuiteletData.update(d => ({ ...$SuiteletData, groups }));
-        console.log(`EDITOR addFieldGroup END`, suitelet);
+        console.log(`EDITOR addFieldGroup END`, `suitelet = ${suitelet.id}`);
     };
 
     const addSublist = () => {
-        console.log(`addSublist END`, suitelet);
+        console.log(`addSublist END`, suitelet.id);
     };
 
     const updateButton = (d) => {
         updateData.key = `button-${d.id}`;
+        console.log(`EDITOR updateData.key = ${updateData.key}`);
         // UpdateObject.set({ type: 'button', key: d.id });
         console.log(`EDITOR UpdateObject`, suitelet);
     };
@@ -56,12 +57,12 @@
             <button type="button" on:mouseup={addFieldGroup}>Add field group</button>
             <!-- <button type="button" on:mouseup={addField}>Add field</button> -->
             <button type="button" on:mouseup={addSublist}>Add sublist</button>
-        </div>
+        </div>``
     </div>
 
     <div id="previewButtons">
         {#each buttonList as button}
-            <Button data={button} onmouseup={() => {updateButton(button)}} />
+            <Button data={button} onclick={() => {updateButton(button)}} />
         {/each}
     </div>
     <div id="previewFields">

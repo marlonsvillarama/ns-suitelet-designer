@@ -1,13 +1,10 @@
-let id = $state('')
-let name = $state('')
-let buttons = $state([])
-let groups = $state([])
-let sublists = $state([])
-let updateKey = $state('')
-let updateId = $state('')
-let updateType = $state('')
-
 export const createSuiteletData = () => {
+    let id = $state('')
+    let name = $state('')
+    let buttons = $state([])
+    let groups = $state([])
+    let sublists = $state([])
+
     return {
         get id() { return id },
         get name() { return name },
@@ -28,7 +25,6 @@ export const createSuiteletData = () => {
             buttons = [];
             groups = [];
             sublists = [];
-            updateKey = '';
         },
 
         updateButton(button) {
@@ -52,6 +48,10 @@ export const createSuiteletData = () => {
     };
 };
 export const createUpdateData = () => {
+    let updateKey = $state('');
+    let updateId = $state('');
+    let updateType = $state('');
+
     return {
         get key() { return updateKey },
 

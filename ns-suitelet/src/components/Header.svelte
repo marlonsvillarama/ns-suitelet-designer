@@ -1,7 +1,7 @@
 <script>
     import logo from '../assets/logo.svg'
     // import { SuiteletData } from '../store/suitelet';
-    import { createSuiteletData } from '../store/suitelet';
+    import { createSuiteletData } from '../store/suitelet.svelte';
 
     let suitelet = createSuiteletData();
 
