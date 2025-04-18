@@ -1,27 +1,34 @@
 <script>
-    // import { SuiteletData, UpdateObject } from "../store/suitelet";
     import { createSuiteletData } from "../store/suitelet.svelte";
     import { generateId } from "../store/string";
-
-    // export let data = {};
-    // export let id = data?.id || `grp-${generateId()}`;
-    // export let label = data?.label || 'Ungrouped...';
+    import Field from "./Field.svelte";
 
     let suitelet = createSuiteletData();
-    let { data, onmouseup } = $props();
+    let { data, onchildclick } = $props();
     let id = data?.id || generateId();
     let label = data?.label || 'Field Group';
+    let group = $derived(suitelet.groups.find(g => g.id === id) || {});
 
     // let groups = $SuiteletData.groups || [];
-    let group = (suitelet.groups || []).find(g => g.id === id) || {};
     // $: group = groups.find(g => g.id === id) || {};
     // $: groupId = data.id || id;
     // $: groupLabel = data.label || label;
     // $: groupClasses = group.submit === true ? 'btn-submit' : 'btn-regular';
 
+    // const calcHeight = (col) => {
+    //     let height = col.reduce((sum, f) => {
+    //         sum += f.type === ''
+    //     }, 0);
+    // };
+
+    const addField = () => {
+        group.col1.push({ id: generateId(), label: 'Field' });
+        console.log(`suitelet groups`, suitelet.groups);
+
+    };
+
     const editGroup = () => {
-        suitelet.updateGroup()
-        // UpdateObject.set({ type: 'group', key: group?.id || id });
+        suitelet.updateGroup();
         console.log('FIELD_GROUP editGroup', suitelet);
     };
 </script>
@@ -30,12 +37,16 @@
     <div class="header">
         <h3>{label}</h3>
         <div>
-            <button type="button" onmouseup={editGroup}>Add field</button>
+            <button type="button" onmouseup={addField}>Add field</button>
             <button type="button" onmouseup={editGroup}>Edit</button>
+            <button type="button" onmouseup={editGroup}>Delete</button>
         </div>
     </div>
     <div class="contents">
         <div class="col">
+            {#each group.col1 as fld}
+                <Field data={fld} {onchildclick} />
+            {/each}
         </div>
         <div class="col">
         </div>

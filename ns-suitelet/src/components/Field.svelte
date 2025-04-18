@@ -1,17 +1,54 @@
 <script>
-    export let id = 'field';
-    export let label = 'Field';
-    export let data = {};
+    import { createSuiteletData } from "../store/suitelet.svelte";
+    import { generateId } from "../store/string";
 
-    $: fieldId = data.id || id;
-    $: fieldLabel = data.label || label;
-    $: fieldClasses = data.submit === true ? 'btn-submit' : 'btn-regular';
+    const DEFAULT_VALUES = {
+        'text': 'Text',
+        'integer': '0',
+        'float': '0.0'
+    };
+
+    // let suitelet = createSuiteletData();
+    let { data, onchildclick } = $props();
+    let id = data?.id || generateId();
+    let label = data?.label || 'Text Field';
+    let type = data?.type || 'text';
+    let value = $derived(DEFAULT_VALUES[type]);
+    let fieldClasses = $derived([ 'fld' ]);
+    let css = $derived(fieldClasses.join(' '));
+    // export let id = 'field';
+    // export let label = 'Field';
+    // export let data = {};
+
+    // $: fieldId = data.id || id;
+    // $: fieldLabel = data.label || label;
+    // $: fieldClasses = data.submit === true ? 'btn-submit' : 'btn-regular';
+    // let fieldClasses = $derived(type);
 </script>
 
-<div class="preview-fld">
-    <label for="fld1">Text field</label>
+{#snippet textField({ css, id, label, value })}
+    <div class="preview-fld" {id}>
+        <span class="fld-label">{label}</span>
+        <span class={css}>{value}</span>
+    </div>
+{/snippet}
+
+{#snippet checkField({ id, label })}
+    <label class="cb-container" {id}>{label}
+        <input type="checkbox" checked disabled>
+        <span class="checkmark"></span>
+    </label>
+{/snippet}
+
+{#if type === 'check'}
+    {@render checkField({ id, label })}
+{:else}
+    {@render textField({ id, css, label, value })}
+{/if}
+<!-- <div class="preview-fld" {id}>
+    <span class="fld-label">{label}</span>
     <span class="fld fld-text">Text</span>
-</div>
+</div> -->
 
 <style>
     .cb-container {
@@ -92,4 +129,47 @@
         padding: 0.375rem 0.75rem;
     }
 
+    .preview-fld {
+        display: flex;
+        flex-direction: column;
+        /* align-items: baseline;
+        position: relative; */
+        border: 1px solid transparent;
+        gap: 0.25rem;
+        padding: 0.25rem;
+    }
+
+    .preview-fld:hover {
+        /* border-radius: 0.5rem; */
+        cursor: pointer;
+        border: 1px solid var(--color-hover);
+        border-radius: 0.25rem;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        transform: translateY(-1px);
+    }
+
+    /* .preview-fld > .fldset {
+        border: 1px solid transparent;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        padding: 0.25rem;
+    } */
+
+    /* .fldset > label {
+        font-size: var(--fs-xs);
+        text-transform: uppercase;
+    } */
+
+    .preview-fld > .fld-label {
+        font-size: var(--fs-xs);
+        text-transform: uppercase;
+    }
+
+    /* .preview-fld:hover > .fldset {
+        border: 1px solid var(--color-hover);
+        border-radius: 0.25rem;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        transform: translateY(-1px);
+    } */
 </style>

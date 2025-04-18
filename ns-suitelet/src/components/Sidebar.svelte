@@ -9,6 +9,14 @@
     const suitelet = createSuiteletData();
     const updateData = createUpdateData();
 
+    /* const propertyMap = {
+        button: ButtonProperties,
+        group: FieldGroupProperties,
+        field: FieldProperties,
+        sublist: SublistProperties
+    };
+
+    const PropertiesForm = propertyMap[updateData.type] || null; */
     $effect(() => {
         console.log(`SIDEBAR updateKey = "${updateData.key}"`)
         if (!updateData.key) { return; }
@@ -17,11 +25,15 @@
 
         // TODO: Dynamically render properties form
 
+        // if (!PropertiesForm) {
+        //     return;
+        // }
     });
 </script>
 
 <div id="sidebar" class="hidden">
-    <ButtonProperties />
+    <!-- <PropertiesForm /> -->
+    <!-- <ButtonProperties /> -->
     <!-- <div id="buttonProperties" class="sidebar-prop hidden">
         <div class="sidebar-title">
             <h3>Button Properties</h3>
@@ -52,7 +64,7 @@
         </div>
     </div> -->
 
-    <FieldGroupProperties />
+    <!-- <FieldGroupProperties /> -->
     <!-- <div id="fieldGroupProperties" class="hidden">
         <div class="sidebar-title">
             <h3>Field Group Properties</h3>
@@ -76,7 +88,7 @@
         </div>
     </div> -->
 
-    <FieldProperties />
+    <!-- <FieldProperties /> -->
     <!-- <div id="fieldProperties" class="">
         <div class="sidebar-title">
             <h3>Field Properties</h3>
@@ -159,7 +171,7 @@
         </div>
     </div> -->
 
-    <SublistProperties />
+    <!-- <SublistProperties /> -->
     <!-- <div id="sublistProperties" class="">
         <div class="sidebar-title">
             <h3>Sublist Properties</h3>

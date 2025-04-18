@@ -10,16 +10,16 @@
     };
 
     const previewSuitelet = () => {
-        console.log('previewing...', `id = ${suitelet.id}; name = ${suitelet.name}`);
+        console.log('previewing...', `id = "${suitelet.id}"; name = "${suitelet.name}"; title = "${suitelet.title}"`);
     };
 
     const updateId = (e) => {
         suitelet.id = e.target.innerText;
     };
 
-    const updateName = (e) => {
-        suitelet.name = e.target.value;
-    }
+    // const updateName = (e) => {
+    //     suitelet.name = e.target.value;
+    // }
 </script>
 
 <header>
@@ -35,8 +35,9 @@
     </div>
     <div id="headerSub">
         <div id="scriptName">
-            <input type="text" name="txtName" id="txtName" on:keyup={updateName}
-                placeholder="Enter a name for the Suitelet" maxlength="30">
+            <input type="text" bind:value={suitelet.name} maxlength="30" placeholder="Enter a name for the Suitelet">
+            <!-- <input type="text" name="txtName" id="txtName" on:keyup={updateName}
+                placeholder="Enter a name for the Suitelet" maxlength="30"> -->
         </div>
         <div id="scriptId">
             <span>customscript_f5_sl_</span>

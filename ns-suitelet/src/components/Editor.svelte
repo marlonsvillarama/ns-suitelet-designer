@@ -10,9 +10,9 @@
     let updateData = createUpdateData();
     let { onchildclick } = $props();
 
-    let buttonList = suitelet.buttons || [];
-    let fieldGroups = suitelet.groups || [];
-    let sublists = suitelet.sublists || [];
+    // let buttonList = suitelet.buttons || [];
+    // let fieldGroups = suitelet.groups || [];
+    // let sublists = suitelet.sublists || [];
 
     const addButton = () => {
         suitelet.addButton({ id: generateId(), label: 'Button' });
@@ -27,7 +27,7 @@
         if (!label) { return; }
 
         // let groups = $SuiteletData['groups'] || [];
-        // groups.push({ id: generateId(), label });
+        suitelet.groups.push({ id: generateId(), label, col1: [], col2: [] });
 
         // SuiteletData.update(d => ({ ...$SuiteletData, groups }));
         console.log(`EDITOR addFieldGroup END`, `suitelet = ${suitelet.id}`);
@@ -39,19 +39,18 @@
 
     const updateButton = (d) => {
         updateData.key = `button-${d.id}`;
-        console.log(`EDITOR updateData.key = ${updateData.key}`);
+        console.log(`EDITOR update key = ${updateData.key}`);
     };
 
     const updateGroup = (d) => {
         updateData.key = `group-${d.id}`;
-        // UpdateObject.set({ type: 'button', key: d.id });
-        console.log(`EDITOR UpdateObject`, suitelet);
+        console.log(`EDITOR update key = "${updateData.key}"`);
     };
 </script>
 
 <div id="preview">
     <div id="previewHeader">
-        <input type="text" name="txtFormName" id="txtFormName" placeholder="Form name" maxlength="80">
+        <input type="text" bind:value={suitelet.title} placeholder="Type the form name here" maxlength="80">
         <div>
             <button type="button" onmouseup={addButton}>Add button</button>
             <button type="button" onmouseup={addFieldGroup}>Add field group</button>
@@ -61,15 +60,15 @@
     </div>
 
     <div id="previewButtons">
-        {#each buttonList as button}
+        {#each (suitelet.buttons || []) as button}
             <Button data={button} onchildclick={() => {updateButton(button)}} />
         {/each}
     </div>
     <div id="previewFields">
-        {#each fieldGroups as group}
-            <FieldGroup data={group} onmouseup={() => {updateGroup(group)}} />
+        {#each (suitelet.groups || []) as group}
+            <FieldGroup data={group} onchildclick={() => {updateGroup(group)}} />
         {/each}
-        <div class="preview-grp">
+        <!-- <div class="preview-grp">
             <div class="preview-grp-header">
                 <h3>Ungrouped</h3>
                 <button type="button">Edit</button>
@@ -102,9 +101,9 @@
 
             </div>
 
-        </div>
+        </div> -->
 
-        <div class="preview-grp">
+        <!-- <div class="preview-grp">
             <div class="preview-grp-header">
                 <h3>Ungrouped</h3>
                 <button type="button">Edit</button>
@@ -137,11 +136,13 @@
 
             </div>
 
-        </div>
+        </div> -->
 
     </div>
     <div id="previewSublists">
-        sublists
+        {#each (suitelet.sublists || []) as sublist}
+            sublist
+        {/each}
     </div>
 </div>
 
@@ -199,5 +200,11 @@
         flex-direction: row;
         gap: 0.75rem;
         align-items: center;
+    }
+
+    #previewFields {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
     }
 </style>
